@@ -1,13 +1,20 @@
 package com.educandoweb.course.entities;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 //SERIALIZABLE: faz objetos poderem serem transformados em cadeias de bytes
 // (precisa para objetos para trafegar em rede, e gravar em arquivos)
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String email;
     private String phone;
