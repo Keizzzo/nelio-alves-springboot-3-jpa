@@ -1,8 +1,10 @@
 package com.educandoweb.course.config;
 
+import com.educandoweb.course.entities.Category;
 import com.educandoweb.course.entities.Order;
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.entities.enums.OrderStatus;
+import com.educandoweb.course.repositories.CategoryRepository;
 import com.educandoweb.course.repositories.OrderRepository;
 import com.educandoweb.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class TestConfig implements CommandLineRunner {
     private UserRepository userRepository;
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private OrderRepository orderRepository;
 
     @Override
@@ -29,6 +34,9 @@ public class TestConfig implements CommandLineRunner {
         //tudo que estiver aqui vai ser executado quando iniciar o app
         //Seeding = preencher banco de dados
 
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
 
         //id null = porque o banco de dados vai popular essa info
         User u1 = new User(null, "Keizo", "k@gmail.com", "92413986", "mortadela14");
@@ -41,6 +49,7 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
     }
 }
