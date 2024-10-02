@@ -19,8 +19,12 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient //TRANSIENT = Faz o spring não querer interpretar no mapeamento objeto relacional
+    //@Transient TRANSIENT = Faz o spring não querer interpretar no mapeamento objeto relacional
     //SET garante que não tenha o mesmo tipo de categoria na coleção
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+               joinColumns = @JoinColumn(name = "product_id"),
+               inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product(){}
